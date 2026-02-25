@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # Backend Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: yolo-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/uploads:/app/uploads
+      - ./backend/results:/app/results
+      - ./backend/models:/app/models
+      - ./yolov8n.pt:/app/yolov8n.pt
+      - ./yolov8s-oiv7.pt:/app/yolov8s-oiv7.pt
+      - ./yolov8m-worldv2.pt:/app/yolov8m-worldv2.pt
+    environment:
+      - DATABASE_URL=sqlite:///./yolo_detection.db
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-change-in-production}
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
+      - DEBUG=False
+    restart: unless-stopped
+    networks:
+      - yolo-network
+
+  # Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: yolo-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - yolo-network
+
+  # Optional: PostgreSQL Database (comment out if using SQLite)
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: yolo-postgres
+  #   environment:
+  #     - POSTGRES_USER=yolo
+  #     - POSTGRES_PASSWORD=yolo123
+  #     - POSTGRES_DB=yolo_detection
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   restart: unless-stopped
+  #   networks:
+  #     - yolo-network
+
+networks:
+  yolo-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

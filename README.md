@@ -1,264 +1,426 @@
-# YOLO Object Detection GUI
+# YOLOv8 Object Detection Web Portal 🚀
 
-A professional desktop application for object detection using YOLOv8. Detect objects in images, videos, and live webcam feeds with an intuitive graphical interface.
+A **full-stack web application** for real-time object detection using YOLOv8. Built with FastAPI (Python) backend and React + Tailwind CSS frontend.
 
-## 🌟 Features
+![Tech Stack](https://img.shields.io/badge/Python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green)
+![React](https://img.shields.io/badge/React-18.2-61dafb)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3-38bdf8)
+![YOLOv8](https://img.shields.io/badge/YOLOv8-Latest-yellow)
 
-- 🖼️ **Image Detection** - Analyze images and identify objects with bounding boxes
-- 🎥 **Video Processing** - Real-time object detection in video files
-- 📹 **Webcam Support** - Live detection using your computer's camera
-- 🔄 **Multiple Models** - Switch between different YOLOv8 models on the fly
-- 📊 **Visual Results** - See detected objects with labels, confidence scores, and bounding boxes
-- 🎨 **Modern UI** - Clean and intuitive graphical interface with dark theme
-- ⚡ **Fast Processing** - Utilizes GPU acceleration when available
+## 📖 About
 
-## 📋 Prerequisites
+Real-time object detection web application with:
+- **Multi-user authentication** with JWT tokens
+- **Image & Video Detection** - Upload files for analysis
+- **Webcam Live Detection** - Real-time object detection
+- **Admin Dashboard** - System management and statistics
+- **Modern Responsive UI** - Works on all devices
 
-- Python 3.8 or higher
-- Webcam (optional, only for live detection)
-- GPU with CUDA support (optional, for faster processing)
+---
 
-## 📦 Installation
+## 🚀 How to Run the Project
 
-1. **Clone or download this repository** to your local machine
+### ✅ Prerequisites
 
-2. **Navigate to the project directory:**
-```bash
-cd "Project Model"
+- **Python 3.11+** installed
+- **Node.js 18+** and npm installed
+
+---
+
+### 📦 Step 1: Create Virtual Environment
+
+```powershell
+# Navigate to project root
+cd C:\Users\YourUsername\RealTime-Object-Detection-YOLOv8
+
+# Create virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+.\.venv\Scripts\Activate.ps1
 ```
 
-3. **Install required dependencies:**
-```bash
-pip install -r requirements.txt
+✅ You should see `(.venv)` in your terminal prompt
+
+---
+
+### 📦 Step 2: Install Backend Dependencies
+
+```powershell
+# With virtual environment activated
+pip install fastapi uvicorn[standard] python-multipart ultralytics opencv-python torch torchvision numpy Pillow sqlalchemy alembic python-jose[cryptography] passlib[bcrypt] bcrypt python-dotenv pydantic pydantic-settings psutil aiofiles email-validator
 ```
 
-This will install:
-- ultralytics (YOLOv8)
-- opencv-python (Computer vision)
-- numpy (Numerical operations)
-- torch & torchvision (Deep learning framework)
-- Pillow (Image processing)
-- flask & werkzeug (Web framework dependencies)
+**Wait 5-10 minutes** for installation to complete
 
-## 🚀 Running the Application
+---
 
-Simply run the main Python script:
+### 📦 Step 3: Install Frontend Dependencies
 
-```bash
-python object_detection_gui.py
+```powershell
+# Navigate to frontend folder
+cd frontend
+
+# Install npm packages
+npm install
+
+# Return to project root
+cd ..
 ```
 
-The GUI window will open automatically.
+**Wait 2-3 minutes** for installation to complete
 
-## 📖 How to Use
+---
 
-### 1. Image Detection
+### ⚙️ Step 4: Setup Environment Files
 
-1. Click the **"📷 Upload Image"** button
-2. Select an image file from your computer (JPG, PNG, BMP, etc.)
-3. View the detected objects with bounding boxes and labels
-4. Detection results are displayed in the bottom panel
+```powershell
+# Backend environment file
+cd backend
+copy .env.example .env
+cd ..
 
-### 2. Video Detection
+# Frontend environment file
+cd frontend
+copy .env.example .env
+cd ..
+```
 
-1. Click the **"🎥 Upload Video"** button
-2. Select a video file (MP4, AVI, MOV, MKV, etc.)
-3. The video will play with real-time object detection
-4. Click **"⏹ Stop"** button to stop video processing
-5. Detection counts are shown in real-time
+---
 
-### 3. Webcam Detection
+### 🚀 Step 5: Start the Backend Server
 
-1. Click the **"📹 Start Webcam"** button
-2. Allow camera access if prompted
-3. Objects will be detected in real-time from your webcam feed
-4. Click **"⏹ Stop"** button to stop the webcam
-5. Live detection statistics are displayed
+**Open a NEW terminal window:**
 
-### 4. Switch Models
+```powershell
+# Navigate to project backend folder
+cd C:\Users\YourUsername\RealTime-Object-Detection-YOLOv8\backend
 
-1. Click the **"🔄 Change Model"** button
-2. Browse and select a different YOLOv8 model file (.pt)
-3. The new model will load automatically
-4. If you have an image displayed, it will be reprocessed with the new model
+# Start backend with full python path
+C:\Users\YourUsername\RealTime-Object-Detection-YOLOv8\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
+```
 
-### 5. View Model Information
+**✅ Success indicators:**
+```
+✅ YOLO model loaded successfully: yolov8n.pt
+✅ Device: cpu
+✅ Classes: 80
+INFO: Application startup complete.
+```
 
-1. Click the **"ℹ️ Model Info"** button
-2. See details about the currently loaded model
-3. View the number of classes and all detectable object categories
+**Keep this terminal open!** Backend running on **http://127.0.0.1:8000**
+
+---
+
+### 🌐 Step 6: Start the Frontend Server
+
+**Open ANOTHER NEW terminal window:**
+
+```powershell
+# Navigate to frontend folder
+cd C:\Users\YourUsername\RealTime-Object-Detection-YOLOv8\frontend
+
+# Start frontend
+npm run dev
+```
+
+**✅ Success indicators:**
+```
+VITE v5.4.21 ready in 1000 ms
+➜  Local:   http://localhost:3000/
+```
+
+**Keep this terminal open!** Frontend running on **http://localhost:3000** or **3001**
+
+---
+
+### 🎉 Step 7: Initialize Admin User
+
+**Open ONE MORE terminal window:**
+
+```powershell
+cd C:\Users\YourUsername\RealTime-Object-Detection-YOLOv8
+
+Invoke-RestMethod -Uri "http://localhost:8000/api/auth/init-admin" -Method POST
+```
+
+**✅ Expected output:**
+```
+message                         username
+-------                         --------
+Admin user created successfully admin
+```
+
+---
+
+### 🌟 Step 8: Access the Application
+
+1. **Open your browser** (Chrome or Edge recommended)
+2. **Go to:** http://localhost:3000 (or http://localhost:3001 if 3000 was busy)
+3. **Login with:**
+   - **Username:** `admin`
+   - **Password:** `admin123`
+
+---
+
+## 🎯 Quick Start (After First Setup)
+
+Once everything is installed, you only need 2 terminals:
+
+**Terminal 1 - Backend:**
+```powershell
+cd C:\Users\YourUsername\RealTime-Object-Detection-YOLOv8\backend
+C:\Users\YourUsername\RealTime-Object-Detection-YOLOv8\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
+```
+
+**Terminal 2 - Frontend:**
+```powershell
+cd C:\Users\YourUsername\RealTime-Object-Detection-YOLOv8\frontend
+npm run dev
+```
+
+**Then open:** http://localhost:3000 and login with **admin / admin123**
+
+---
+
+## ✨ Features
+
+### 🎯 Core Detection Features
+- **📷 Image Detection** - Upload and analyze images with bounding boxes
+- **🎥 Video Processing** - Process entire videos frame-by-frame
+- **📹 Webcam Live Detection** - Real-time webcam object detection
+- **🔄 Multiple Models** - Switch between different YOLOv8 models
+- **📊 Detection Results** - View confidence scores and detected classes
+- **💾 Download Results** - Save annotated images and videos
+
+### 🔐 Authentication & Admin
+- **User Registration & Login** - JWT-based authentication
+- **Admin Dashboard** - System statistics and user management
+- **Model Switching** - Change active YOLO models
+- **Detection History** - View all past detections
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- **FastAPI** - Modern async Python web framework
+- **Ultralytics YOLOv8** - Object detection model
+- **OpenCV** - Computer vision processing
+- **PyTorch** - Deep learning inference
+- **SQLAlchemy** - Database ORM
+
+### Frontend
+- **React 18** - JavaScript library for UI
+- **Vite** - Fast build tool
+- **Tailwind CSS** - Utility-first CSS framework
+- **Axios** - HTTP client
+- **Zustand** - State management
+
+---
 
 ## 📁 Project Structure
 
 ```
-Project Model/
-├── object_detection_gui.py    # Main GUI application
-├── requirements.txt            # Python dependencies
-├── yolov8n.pt                 # YOLOv8 Nano model (default, 80 classes)
-├── yolov8s-oiv7.pt           # YOLOv8 Small model trained on Open Images (600+ classes)
-├── yolov8m-worldv2.pt        # YOLOv8 Medium World model (advanced features)
-└── README.md                  # This documentation
+RealTime-Object-Detection-YOLOv8/
+├── .venv/                       # Python virtual environment
+├── backend/                     # FastAPI Backend
+│   ├── app/
+│   │   ├── api/endpoints/       # API routes
+│   │   ├── core/                # Configuration & security
+│   │   ├── models/              # Database models
+│   │   └── services/            # YOLO service
+│   ├── models/                  # YOLO model files (.pt)
+│   ├── uploads/                 # Uploaded files
+│   ├── results/                 # Detection results
+│   └── .env                     # Backend configuration
+├── frontend/                    # React Frontend
+│   ├── src/
+│   │   ├── components/          # React components
+│   │   └── services/            # API client
+│   └── .env                     # Frontend configuration
+└── README.md                    # This file
 ```
-
-## 🎯 Included Models
-
-### Default Model (Auto-loaded)
-- **yolov8n.pt** - YOLOv8 Nano model
-  - Size: ~6MB
-  - Speed: Fastest
-  - Classes: 80 common objects
-  - Best for: Real-time detection, limited hardware
-
-### Additional Models
-- **yolov8s-oiv7.pt** - YOLOv8 Small trained on Open Images V7
-  - Size: ~22MB
-  - Classes: 600+ objects
-  - Best for: Detecting a wider variety of objects
-
-- **yolov8m-worldv2.pt** - YOLOv8 Medium World V2
-  - Size: ~50MB
-  - Advanced detection capabilities
-  - Best for: High accuracy requirements
-
-### Using Different Models
-You can switch models anytime using the **"🔄 Change Model"** button in the GUI, or download additional YOLOv8 models from the [Ultralytics repository](https://github.com/ultralytics/ultralytics).
-
-## 📊 Detectable Objects (Default Model)
-
-The default YOLOv8n model can detect **80 common object categories**:
-
-### People & Animals
-Person, Dog, Cat, Horse, Bird, Cow, Sheep, Elephant, Bear, Zebra, Giraffe
-
-### Vehicles
-Car, Truck, Bus, Motorcycle, Bicycle, Airplane, Boat, Train
-
-### Household Items
-Chair, Couch, Bed, Dining Table, TV, Laptop, Mouse, Keyboard, Remote, Cell Phone
-
-### Kitchen & Food
-Bottle, Cup, Fork, Knife, Spoon, Bowl, Banana, Apple, Orange, Pizza, Cake, Carrot, Hot Dog, Sandwich, Broccoli
-
-### Sports & Recreation
-Sports Ball, Baseball Bat, Baseball Glove, Tennis Racket, Skateboard, Surfboard, Skis, Snowboard, Frisbee, Kite
-
-### Accessories & Items
-Backpack, Umbrella, Handbag, Tie, Suitcase, Book, Clock, Vase, Scissors, Teddy Bear, Hair Drier, Toothbrush
-
-**And more!** Use the "ℹ️ Model Info" button in the GUI to see the complete list.
-
-## ⚙️ Configuration
-
-### Default Settings
-- **Model:** yolov8n.pt (automatically loaded on startup)
-- **Confidence Threshold:** 0.5 (50%)
-- **Display:** Bounding boxes with labels and confidence scores
-
-### Performance Tips
-- **For Speed:** Use yolov8n.pt (nano model)
-- **For Accuracy:** Use yolov8m-worldv2.pt (medium model)
-- **For More Classes:** Use yolov8s-oiv7.pt (600+ objects)
-- **GPU Acceleration:** Install CUDA for faster processing
-
-## 🔧 Troubleshooting
-
-### Application Won't Start
-- **Solution:** Ensure all dependencies are installed
-  ```bash
-  pip install -r requirements.txt
-  ```
-- Verify Python version is 3.8 or higher: `python --version`
-
-### Webcam Not Working
-- **Solution:** Check camera permissions in your OS settings
-- Ensure no other application is using the webcam
-- Try closing and reopening the application
-
-### Slow Detection Speed
-- **Solution:** Switch to a lighter model (yolov8n.pt)
-- Close other resource-intensive applications
-- For videos, try processing at lower resolution
-- Consider enabling GPU acceleration (requires CUDA)
-
-### Model File Errors
-- **Solution:** Ensure .pt files are not corrupted
-- Re-download models from official Ultralytics sources
-- Check that model files are in the project directory
-
-### Import Errors
-- **Solution:** Reinstall specific packages:
-  ```bash
-  pip install --upgrade ultralytics opencv-python torch
-  ```
-
-## 💡 Tips for Best Results
-
-1. **Good Lighting:** Ensure proper lighting for better detection accuracy
-2. **Image Quality:** Higher resolution images provide better results
-3. **Object Size:** Objects should be clearly visible (not too small or distant)
-4. **Camera Stability:** For webcam detection, keep the camera steady
-5. **Model Selection:** Choose the right model for your use case
-   - Quick tests → yolov8n.pt
-   - Diverse objects → yolov8s-oiv7.pt
-   - High accuracy → yolov8m-worldv2.pt
-
-## 🖥️ System Requirements
-
-### Minimum Requirements
-- **OS:** Windows 10/11, macOS 10.14+, Linux
-- **RAM:** 4GB
-- **Processor:** Intel Core i3 or equivalent
-- **Python:** 3.8 or higher
-
-### Recommended Requirements
-- **RAM:** 8GB or more
-- **Processor:** Intel Core i5 or better
-- **GPU:** NVIDIA GPU with CUDA support
-- **Storage:** 500MB free space
-
-## 🚀 Advanced Usage
-
-### Using Custom Models
-1. Download any YOLOv8 compatible .pt model
-2. Place it in the project directory or any accessible location
-3. Click "🔄 Change Model" in the GUI
-4. Select your custom model file
-
-### Batch Processing
-For processing multiple files, use the GUI to:
-1. Process an image/video
-2. Save or analyze results
-3. Load the next file
-4. Repeat as needed
-
-## 📝 Technical Details
-
-- **Framework:** Ultralytics YOLOv8
-- **GUI:** Tkinter (Python standard library)
-- **Image Processing:** OpenCV, PIL
-- **Deep Learning:** PyTorch
-- **Interface:** Responsive with scrollable content
-
-## 📞 Support & Resources
-
-- **Ultralytics YOLOv8 Docs:** [https://docs.ultralytics.com](https://docs.ultralytics.com)
-- **PyTorch Documentation:** [https://pytorch.org/docs](https://pytorch.org/docs)
-- **OpenCV Documentation:** [https://docs.opencv.org](https://docs.opencv.org)
-
-## 📄 License
-
-This project uses open-source libraries and pre-trained models. Please refer to individual library licenses:
-- Ultralytics YOLOv8: AGPL-3.0
-- OpenCV: Apache 2.0
-- PyTorch: BSD-style license
-
-## 🎓 Learning Resources
-
-To learn more about object detection and YOLOv8:
-- [YOLOv8 Official Guide](https://docs.ultralytics.com/models/yolov8/)
-- [Object Detection Basics](https://docs.ultralytics.com/tasks/detect/)
-- [Model Training Tutorial](https://docs.ultralytics.com/modes/train/)
 
 ---
 
-**Made with YOLOv8 🎯 | Enjoy detecting objects!**
+## ❗ Troubleshooting
+
+### Problem: "email-validator is not installed"
+
+**Solution:**
+```powershell
+# Activate virtual environment first
+.\.venv\Scripts\Activate.ps1
+
+# Install email-validator
+pip install email-validator
+```
+
+### Problem: "uvicorn: command not found"
+
+**Solution:** Always use the full path to Python:
+```powershell
+C:\Users\YourUsername\RealTime-Object-Detection-YOLOv8\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
+```
+
+### Problem: "CORS_ORIGINS validation error"
+
+**Solution:**
+```powershell
+cd backend
+copy .env.example .env
+```
+
+### Problem: Port already in use (8000 or 3000)
+
+**Solution:**
+```powershell
+# Find and kill process on port 8000
+netstat -ano | findstr :8000
+taskkill /PID <PID_NUMBER> /F
+
+# Find and kill process on port 3000
+netstat -ano | findstr :3000
+taskkill /PID <PID_NUMBER> /F
+```
+
+### Problem: Login shows "incorrect username or password"
+
+**Solution:**
+```powershell
+# Delete database and reinitialize
+cd backend
+del yolo_detection.db
+cd ..
+Invoke-RestMethod -Uri "http://localhost:8000/api/auth/init-admin" -Method POST
+```
+
+### Problem: Webcam not detecting objects
+
+**Solutions:**
+1. Lower confidence threshold to 0.15 or 0.10
+2. Ensure good lighting
+3. Point camera at common objects (person, phone, laptop, cup)
+4. Check browser console (F12) for errors
+5. Verify backend is running (visit http://127.0.0.1:8000/docs)
+
+### Problem: Frontend shows "Network Error"
+
+**Solution:**
+1. Verify backend is running on port 8000
+2. Check backend terminal for errors
+3. Open http://127.0.0.1:8000/docs to verify backend is accessible
+
+---
+
+## 🛑 How to Stop the Application
+
+1. Press `Ctrl+C` in the backend terminal
+2. Press `Ctrl+C` in the frontend terminal
+
+---
+
+## 📞 Need Help?
+
+If you encounter issues:
+1. ✅ Check both terminal windows for error messages
+2. ✅ Ensure virtual environment is activated
+3. ✅ Verify both servers are running
+4. ✅ Check browser console (F12) for errors
+5. ✅ Use Chrome or Edge browser (recommended)
+
+---
+
+## 🎊 You're All Set!
+
+Enjoy using the YOLOv8 Object Detection Web Portal! 🚀
+
+**Quick Tips:**
+- Use **good lighting** for better webcam detection
+- Point camera at **common objects** (person, phone, laptop, bottle)
+- Try **different confidence thresholds** (0.25 is default)
+- Check **History** page to see all past detections
+- Use **Admin Panel** to monitor system stats
+
+---
+
+## 📄 License
+
+MIT License - feel free to use this project for personal or commercial purposes.
+
+---
+
+**Made with ❤️ using YOLOv8 + FastAPI + React**
+
+### Quick Deploy Links
+
+**Backend Options:**
+- [![Deploy on Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com)
+- [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app)
+
+**Frontend Options:**
+- [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+- [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start)
+
+## 📸 Screenshots
+
+### Dashboard
+![Dashboard](https://via.placeholder.com/800x450/0f172a/3b82f6?text=Dashboard+View)
+
+### Image Detection
+![Image Detection](https://via.placeholder.com/800x450/0f172a/8b5cf6?text=Image+Detection)
+
+### Admin Panel
+![Admin Panel](https://via.placeholder.com/800x450/0f172a/10b981?text=Admin+Panel)
+
+## 🤝 Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+### Development Setup
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) - Object detection model
+- [FastAPI](https://fastapi.tiangolo.com/) - Backend framework
+- [React](https://react.dev/) - Frontend library
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+
+## 📧 Support
+
+- **Issues:** [GitHub Issues](https://github.com/your-repo/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/your-repo/discussions)
+- **Email:** support@yourapp.com
+
+## 🗺️ Roadmap
+
+- [ ] WebSocket support for real-time webcam detection
+- [ ] Model training interface
+- [ ] Multiple file batch processing
+- [ ] Export detection data (CSV/JSON)
+- [ ] Mobile application (React Native)
+- [ ] Video streaming support (RTSP)
+- [ ] Custom model upload and management
+- [ ] API rate limiting
+- [ ] User usage quotas
+- [ ] Email notifications
+
+## ⭐ Show Your Support
+
+If you find this project useful, please consider giving it a star on GitHub!
+
+---
+
+**Built with ❤️ using YOLOv8, FastAPI, and React**
+
+**Version:** 2.0.0 | **Last Updated:** February 2024
