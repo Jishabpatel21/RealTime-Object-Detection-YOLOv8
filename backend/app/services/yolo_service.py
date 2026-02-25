@@ -141,13 +141,29 @@ class YOLOService:
         
         # Get video properties
         fps = int(cap.get(cv2.CAP_PROP_FPS))
+        if fps == 0:
+            fps = 30  # Default to 30 FPS if unable to detect
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
         total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
         
-        # Create video writer
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-        out = cv2.VideoWriter(str(output_path), fourcc, fps, (width, height))
+        print(f"📹 Video properties: {width}x{height} @ {fps}fps, {total_frames} frames")
+        
+        # Create video writer with browser-compatible codec
+        # Use H.264 (avc1) for best browser compatibility
+        try:
+            fourcc = cv2.VideoWriter_fourcc(*'avc1')
+            out = cv2.VideoWriter(str(output_path), fourcc, fps, (width, height))
+            if not out.isOpened():
+                raise RuntimeError("H.264 codec not available")
+            print("✅ Using H.264 (avc1) codec")
+        except:
+            # Fallback to mp4v if H.264 is not available
+            print("⚠️ H.264 not available, falling back to mp4v")
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            out = cv2.VideoWriter(str(output_path), fourcc, fps, (width, height))
+            if not out.isOpened():
+                raise RuntimeError("Could not initialize video writer")
         
         frame_count = 0
         
