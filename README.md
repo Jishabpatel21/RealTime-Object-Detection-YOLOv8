@@ -315,24 +315,6 @@ Invoke-RestMethod -Uri "http://localhost:8000/api/auth/init-admin" -Method POST
 
 ---
 
-## 🛑 How to Stop the Application
-
-1. Press `Ctrl+C` in the backend terminal
-2. Press `Ctrl+C` in the frontend terminal
-
----
-
-## 📞 Need Help?
-
-If you encounter issues:
-1. ✅ Check both terminal windows for error messages
-2. ✅ Ensure virtual environment is activated
-3. ✅ Verify both servers are running
-4. ✅ Check browser console (F12) for errors
-5. ✅ Use Chrome or Edge browser (recommended)
-
----
-
 ## 🎊 You're All Set!
 
 Enjoy using the YOLOv8 Object Detection Web Portal! 🚀
@@ -346,45 +328,28 @@ Enjoy using the YOLOv8 Object Detection Web Portal! 🚀
 
 ---
 
-## 📄 License
-
-MIT License - feel free to use this project for personal or commercial purposes.
-
----
-
-**Made with ❤️ using YOLOv8 + FastAPI + React**
-
-### Quick Deploy Links
-
-**Backend Options:**
-- [![Deploy on Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com)
-- [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app)
-
-**Frontend Options:**
-- [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
-- [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start)
-
 ## 📸 Screenshots
 
 ### Dashboard
-![Dashboard](https://via.placeholder.com/800x450/0f172a/3b82f6?text=Dashboard+View)
+![Dashboard](Screenshorts/AdminDashboard.png)
 
 ### Image Detection
-![Image Detection](https://via.placeholder.com/800x450/0f172a/8b5cf6?text=Image+Detection)
+![Image Detection](Screenshorts/ImageDetection.png)
+
+### Video Detection
+![Video Detection](Screenshorts/VideoDetection.png)
+
+### Webcam Detection
+![Webcam Detection](Screenshorts/WebCam.png)
 
 ### Admin Panel
-![Admin Panel](https://via.placeholder.com/800x450/0f172a/10b981?text=Admin+Panel)
+![Admin Panel](Screenshorts/AdminPanel.png)
 
-## 🤝 Contributing
+### Model Info
+![Model Info](Screenshorts/ModelInfo.png)
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### Development Setup
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
+### Detection History
+![Detection History](Screenshorts/HistoryDetection.png)
 ## 📄 License
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
@@ -396,11 +361,7 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 - [React](https://react.dev/) - Frontend library
 - [Tailwind CSS](https://tailwindcss.com/) - CSS framework
 
-## 📧 Support
 
-- **Issues:** [GitHub Issues](https://github.com/your-repo/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/your-repo/discussions)
-- **Email:** support@yourapp.com
 
 ## 🗺️ Roadmap
 
