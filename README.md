@@ -78,7 +78,8 @@ cd ..
 ```powershell
 # Backend environment file
 cd backend
-copy .env.example .env
+copy ..\.venv\Scripts\Activate.ps1
+
 cd ..
 
 # Frontend environment file
