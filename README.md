@@ -100,6 +100,9 @@ cd C:\Users\YourUsername\RealTime-Object-Detection-YOLOv8\backend
 
 # Start backend with full python path
 C:\Users\YourUsername\RealTime-Object-Detection-YOLOv8\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
+
+uvicorn app.main:app --reload
+
 ```
 
 **✅ Success indicators:**
